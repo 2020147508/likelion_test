@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action = "{% url 'create' %}" method = "POST">
+        {% csrf_token %}
+        <p> 동아리 이름: <input type = "text" name = "name"></p>
+        <p> 동아리 소개: <textarea name = "description" cols = "50" rows = "2"></textarea></p>
+        <p> 동아리 인원: <input type = "text" name = "numofpeople"></p>
+        <button type = 'submit'>작성하기</button>
+    </form>
+    <a href="{% url 'home' %}">
+        <button style = "margin-top:10px;">홈으로</button>
+    </a>
+{% endblock %}

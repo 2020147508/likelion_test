@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <hr>
+        <h3>{{club.name}}</h3>
+        {{club.description}}
+        <h4>{{club.numofpeople}}명</h4>
+    </div>
+    <div>
+        <button><a href = "{% url 'edit' club.id%}">수정하기</a></button>
+        <button><a href = "{% url 'delete' club.id%}">삭제하기</a></button>
+        <button><a href = "{% url 'home' %}">홈으로</a></button>
+        <hr>
+    </div>
+    <div>
+        {% for comment in club.comment_set.all %}
+        <div id = "comment_index">
+            <div>{{comment.comment}}</div>
+            <br>
+            <div>{{comment.created_at}}</div>
+            <hr>
+            <br>
+        </div>
+        {% endfor %}
+        <form method = "POST" action = "{% url 'comment' club.id%}">
+            {% csrf_token %}
+            <input type = 'text' placeholder = '댓글을 달아주세요' name = "comment">
+            <button type = "submit">입력</button>
+        </form>
+    </div>
+{% endblock %}

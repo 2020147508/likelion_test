@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action = "{% url 'update' club.id%}" method = "POST">
+        {% csrf_token %}
+        <p> 동아리 이름: <input type = "text" name = "name" value = "{{club.name}}"></p>
+        <p> 동아리 소개: <textarea name = "description" cols = "50" rows = "2" value = "{{club.description}}"></textarea></p>
+        <p> 동아리 인원: <input type = "text" name = "numofpeople" value = "{{club.numofpeople}}"></p>
+        <button type = 'submit'>수정하기</button>
+        <button><a href = "{% url 'detail' club.id%}">취소</a></button>
+    </form>
+{% endblock %}
